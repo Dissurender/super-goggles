@@ -12,8 +12,8 @@ datasource db {
 
 model Book {
   id          Int      @id @default(autoincrement())
-  isbn        String @unique @db.VarChar(255)
-  title       String @db.VarChar(255)
+  isbn        String   @unique @db.VarChar(255)
+  title       String   @db.VarChar(255)
   author      Author   @relation(fields: [authorId], references: [id])
   authorId    Int
   pages       Int
@@ -27,7 +27,7 @@ model Book {
 
 model Author {
   id     Int      @id @default(autoincrement())
-  name   String @db.VarChar(255)
+  name   String   @db.VarChar(255)
   Book   Book[]
   Series Series[]
 }

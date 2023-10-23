@@ -1,6 +1,5 @@
 const express = require('express');
 const App = express();
-const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const router = require('./routes/index.js')
@@ -9,7 +8,7 @@ prisma
 
 App.use(helmet());
 App.use(morgan('dev'));
-App.use(bodyParser.json());
+App.use(express.json());
 
 App.use('/', router);
 
