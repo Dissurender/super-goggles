@@ -47,6 +47,8 @@ To run locally use `npm run dev` in your terminal.
 
 If you change the Models remember to run `npx prisma db push` to update your DB tables.
 
+If you have JSdoc installed globally, use `jsdoc src -r -d docs` to update the static html.
+
 
 ## How to Contribute
 
