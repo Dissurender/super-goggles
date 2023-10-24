@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const booksController = require('../controllers/booksController');
-const authorsController = require('../controllers/authorsControllers');
-const seriesController = require('../controllers/seriesController');
+import { getAllBooks } from '../controllers/booksController.js';
+import { getAllAuthors } from '../controllers/authorsControllers.js';
+import { getAllSeries } from '../controllers/seriesController.js';
 
-router.get('/api/books', booksController.getAllBooks);
-router.get('api/authors', authorsController.getAllAuthors);
-router.get('api/series', seriesController.getAllSeries);
+router.get('/api/books', getAllBooks);
+router.get('api/authors', getAllAuthors);
+router.get('api/series', getAllSeries);
 
-module.exports = router;
+// TEMP FILE

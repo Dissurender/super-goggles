@@ -1,4 +1,4 @@
-const { prisma } = require('../../db/index.js');
+import { prisma } from '../../db/index.js';
 
 /**
  *
@@ -6,7 +6,7 @@ const { prisma } = require('../../db/index.js');
  * @param {Response} res
  * @returns {Book[]}
  */
-const getAllBooks = async (req, res) => {
+export const getAllBooks = async (req, res) => {
   const result = await prisma.book.findMany();
   res.json(result);
 };
@@ -17,14 +17,36 @@ const getAllBooks = async (req, res) => {
  * @param {Response} res
  * @returns {Book}
  */
-const getBookByISBN = async (req, res) => {
-  const result = await prisma.book.findUnique();
+export const getBookByISBN = async (req, res) => {
+  const { isbn } = req.body;
+  const result = await prisma.book.findMany({
+    where: { isbn: String(isbn) },
+  });
   res.json(result);
 };
 
-module.exports = {
-  getAllBooks,
-  getBookByISBN,
-  getBooksByAuthor: async () => {},
-  getBooksByGenre: async () => {},
+/**
+ *
+ * @param {Request} req
+ * @param {Response} res
+ */
+export const getBooksByAuthor = async (req, res) => {
+  const { author } = req.body;
+  const result = await prisma.book.findMany({
+    where: { isbn: Number(author) },
+  });
+  res.json(result);
+};
+
+/**
+ *
+ * @param {Request} req
+ * @param {Response} res
+ */
+export const getBooksByGenre = async (req, res) => {
+  const { genre } = req.body;
+  const result = await prisma.book.findMany({
+    where: { genre: Number(genre) },
+  });
+  res.json(result);
 };

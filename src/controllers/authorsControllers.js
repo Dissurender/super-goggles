@@ -1,32 +1,39 @@
-const { prisma } = require('../../db/index.js');
+import { prisma } from '../../db/index.js';
 
 /**
- * 
- * @param {Request} req 
- * @param {Response} res 
+ *
+ * @param {Request} req
+ * @param {Response} res
  * @returns {Author[]}
  */
-const getAllAuthors = async (req, res) => {
+export const getAllAuthors = async (req, res) => {
   const result = await prisma.author.findMany();
   res.json(result);
-}
+};
 
 /**
- * 
- * @param {Request} req 
- * @param {Response} res 
+ *
+ * @param {Request} req
+ * @param {Response} res
  * @returns {Author}
  */
-const getAuthorByID = async (req, res) => {
+export const getAuthorByID = async (req, res) => {
   const { id } = req.body;
   const result = await prisma.author.findUnique({
     where: { id: Number(id) },
   });
   res.json(result);
-}
+};
 
-module.exports = {
-  getAllAuthors,
-  getAuthorByID,
-  getAuthorsByGenre: async () => {},
+/**
+ * 
+ * @param {Request} req 
+ * @param {Response} res 
+ */
+export const getAuthorsByGenre = async (req, res) => {
+  const { genre } = req.body;
+  const result = await prisma.author.findMany({
+    where: { genre: Number(genre) },
+  });
+  res.json(result);
 };

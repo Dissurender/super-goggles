@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 const App = express();
-const morgan = require('morgan');
-const helmet = require('helmet');
-const router = require('./routes/index.js')
-const { prisma } = require('../db/index.js');
-prisma
+import morgan from 'morgan';
+import helmet from 'helmet';
+import router from './routes/index.js';
+import { prisma } from '../db/index.js';
+prisma;
 
 App.use(helmet());
 App.use(morgan('dev'));
