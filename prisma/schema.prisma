@@ -14,20 +14,20 @@ model Book {
   id          Int      @id @default(autoincrement())
   isbn        String   @unique @db.VarChar(255)
   title       String   @db.VarChar(255)
-  author      Author   @relation(fields: [authorId], references: [id])
   authorId    Int
-  pages       Int
+  pages       Int?
   desc        String
   rating      Float
   seriesNum   Int?
-  series      Series   @relation(fields: [seriesId], references: [id])
   seriesId    Int
   availableOn String[]
+  author      Author   @relation(fields: [authorId], references: [id])
+  series      Series   @relation(fields: [seriesId], references: [id])
 }
 
 model Author {
   id     Int      @id @default(autoincrement())
-  name   String   @db.VarChar(255)
+  name   String   @unique @db.VarChar(255)
   Book   Book[]
   Series Series[]
 }

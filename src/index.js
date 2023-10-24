@@ -9,6 +9,7 @@ prisma;
 App.use(helmet());
 App.use(morgan('dev'));
 App.use(express.json());
+App.use(express.static('docs'))
 
 App.use('/', router);
 

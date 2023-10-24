@@ -26,14 +26,32 @@ export const getAuthorByID = async (req, res) => {
 };
 
 /**
- * 
- * @param {Request} req 
- * @param {Response} res 
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @returns {Author[]}
  */
 export const getAuthorsByGenre = async (req, res) => {
   const { genre } = req.body;
   const result = await prisma.author.findMany({
     where: { genre: Number(genre) },
+  });
+  res.json(result);
+};
+
+/**
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @returns {Book}
+ */
+export const createNewAuthor = async (req, res) => {
+  const { name } = req.body;
+
+  const result = await prisma.book.create({
+    data: {
+      name: name,
+    },
   });
   res.json(result);
 };

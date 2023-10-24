@@ -45,7 +45,7 @@ Migrate Models to Database with `npx prisma migrate dev --name init`
 
 To run locally use `npm run dev` in your terminal.
 
-If you change the Models remember to run `npx prisma dev` to update your DB tables.
+If you change the Models remember to run `npx prisma db push` to update your DB tables.
 
 
 ## How to Contribute
